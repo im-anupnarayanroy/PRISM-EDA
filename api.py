@@ -1,9 +1,4 @@
-"""
-api.py  —  PriSm EDA backend  (FastAPI, fully self-contained)
-Run with:  uv run uvicorn api:app --reload --port 8000
-"""
-
-from __future__ import annotations
+#from __future__ import annotations
 
 import io
 import json
@@ -24,10 +19,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-# ══════════════════════════════════════════════════════════════
-# 1. Dataset Profiler
-# ══════════════════════════════════════════════════════════════
+# Dataset Profiler
 
 def profile_dataframe(df: pd.DataFrame) -> dict[str, Any]:
     numeric_cols     = df.select_dtypes(include="number").columns.tolist()
@@ -67,15 +59,12 @@ def profile_dataframe(df: pd.DataFrame) -> dict[str, Any]:
     return profile
 
 
-# ══════════════════════════════════════════════════════════════
-# 2. Heuristic Chart Planner
-#
-#    Priority ladder:
-#      A) Keyword-driven  — problem text → intent buckets + mentioned cols
-#      B) Correlation-driven — top numeric pairs → scatter
-#      C) Structure-driven  — cat×num→bar/box, ≥4 nums→heatmap, low-card→pie
-#      D) Fallback          — histogram per numeric col
-# ══════════════════════════════════════════════════════════════
+# Heuristic Chart Planner
+# Priority ladder:
+# A) Keyword-driven  — problem text → intent buckets + mentioned cols
+# B) Correlation-driven — top numeric pairs → scatter
+# C) Structure-driven  — cat×num→bar/box, ≥4 nums→heatmap, low-card→pie
+# D) Fallback          — histogram per numeric col
 
 _INTENT_MAP: list[tuple[list[str], str]] = [
     (["distribut", "spread", "frequen", "histogram", "skew"],       "histogram"),
@@ -284,9 +273,7 @@ def plan_charts(
     return specs[:6]
 
 
-# ══════════════════════════════════════════════════════════════
-# 3. Chart Data Builder
-# ══════════════════════════════════════════════════════════════
+# Chart Data Builder
 
 def build_chart_payload(df: pd.DataFrame, chart_spec: dict[str, Any]) -> dict[str, Any]:
     ctype     = chart_spec["chart_type"]
@@ -385,9 +372,7 @@ def build_chart_payload(df: pd.DataFrame, chart_spec: dict[str, Any]) -> dict[st
     return payload
 
 
-# ══════════════════════════════════════════════════════════════
-# 4. Endpoints
-# ══════════════════════════════════════════════════════════════
+# Endpoints
 
 @app.post("/analyze")
 async def analyze(
