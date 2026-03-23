@@ -1,0 +1,76 @@
+# ── Python ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+wheels/
+sdist/
+*.manifest
+*.spec
+
+# ── uv / virtual environments ─────────────────────────────────
+.venv/
+.uv/
+uv.lock
+
+# ── Testing ───────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+*.coveragerc
+.tox/
+
+# ── Streamlit ─────────────────────────────────────────────────
+.streamlit/secrets.toml
+
+# ── Environment variables ─────────────────────────────────────
+.env
+.env.*
+!.env.example
+
+# ── Data files (don't commit raw datasets) ────────────────────
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+*.json.gz
+data/
+datasets/
+uploads/
+
+# ── Jupyter / IPython ─────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── OS artefacts ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── IDEs ──────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Logs ──────────────────────────────────────────────────────
+*.log
+logs/
+
+# ── Misc ──────────────────────────────────────────────────────
+.cache/
+tmp/
+temp/
