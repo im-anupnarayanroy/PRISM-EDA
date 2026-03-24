@@ -1,0 +1,15 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "10000:10000"
+
+  streamlit:
+    build: ./streamlit_app
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://backend:10000
